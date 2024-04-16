@@ -34,6 +34,8 @@ class SpeciesWidget extends StatelessWidget {
   }
 
   Widget _buildWideLayout(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,7 +50,7 @@ class SpeciesWidget extends StatelessWidget {
             },
           ),
         ),
-        Spacer(),
+        SizedBox(width: screenWidth * 0.01),
         Expanded(
           flex: 4,
           child: _buildDetailsColumn(
