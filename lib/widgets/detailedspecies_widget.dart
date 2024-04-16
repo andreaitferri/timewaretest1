@@ -66,11 +66,11 @@ class DetailedSpeciesInfoWidget extends StatelessWidget {
 
   TextStyle _getTextStyleForWidth(double width) {
     if (width > 800) {
-      return TextStyle(fontSize: 24);
+      return const TextStyle(fontSize: 24);
     } else if (width > 600) {
-      return TextStyle(fontSize: 20);
+      return const TextStyle(fontSize: 20);
     } else {
-      return TextStyle(fontSize: 16);
+      return const TextStyle(fontSize: 16);
     }
   }
 }
