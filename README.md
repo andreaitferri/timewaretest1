@@ -2,6 +2,15 @@
 
 Un progetto Flutter che sfrutta l'architettura Pine per fornire un approccio strutturato e scalabile allo sviluppo di applicazioni.
 
+
+## Login
+La password da usare per il login è "test".
+
+Per garantire un processo di autenticazione robusto e sicuro, andrebbe un sistema strutturato utilizzando un bloc per la gestione del login e il salvataggio dei token JWT utilizzando flutter_secure_storage.
+
+Per il controllo della pagine se il login è stato effettuato viene usasto un   Future.microtask(() 
+per  posticipare l'esecuzione della navigazione alla pagina di login dopo che la build del widget corrente è stata completata, evitando così errori dovuti a tentativi di navigazione durante la build.
+
 ## Introduzione
 
 Questo progetto è un punto di partenza per un'applicazione Flutter che utilizza l'architettura Pine, integrando concetti di separazione chiara delle responsabilità e sviluppo modulare.

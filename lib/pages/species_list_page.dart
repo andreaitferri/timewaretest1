@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:timewaretest1/blocs/species/species_bloc.dart';
 import 'package:timewaretest1/repositories/species_repository.dart';
+import 'package:timewaretest1/services/network/auth_service.dart';
 import 'package:timewaretest1/widgets/species_widget.dart';
 
 class SpeciesListPage extends StatelessWidget {
@@ -9,12 +11,26 @@ class SpeciesListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.microtask(() {
+      if (!isUserAuthenticated(context)) {
+        Navigator.pushReplacementNamed(context, '/login');
+      }
+    });
+
     return BlocProvider<SpeciesBloc>(
       create: (_) => SpeciesBloc(
         speciesRepository: context.read<SpeciesRepository>(),
       )..add(const FetchSpeciesEvent()),
       child: Scaffold(
-        appBar: AppBar(title: const Text('Species List')),
+        appBar: AppBar(
+          title: const Text('Species List'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () => _logout(context),
+            ),
+          ],
+        ),
         body: BlocBuilder<SpeciesBloc, SpeciesState>(
           builder: (context, state) {
             if (state is FetchedSpeciesState) {
@@ -33,5 +49,15 @@ class SpeciesListPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _logout(BuildContext context) {
+    Provider.of<AuthService>(context, listen: false).logout();
+    Navigator.of(context).pushReplacementNamed('/login');
+  }
+
+  bool isUserAuthenticated(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    return authService.isLoggedIn;
   }
 }

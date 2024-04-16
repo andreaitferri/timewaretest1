@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:timewaretest1/blocs/detailedspecies/detailedspecies_bloc.dart';
 import 'package:timewaretest1/models/species.dart';
 import 'package:timewaretest1/repositories/species_repository.dart';
+import 'package:timewaretest1/services/network/auth_service.dart';
 import 'package:timewaretest1/widgets/detailedspecies_widget.dart';
 
 class SpeciesDetailsPage extends StatelessWidget {
@@ -12,6 +14,12 @@ class SpeciesDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.microtask(() {
+      if (!isUserAuthenticated(context)) {
+        Navigator.pushReplacementNamed(context, '/login');
+      }
+    });
+
     return BlocProvider(
       create: (context) => DetailedSpeciesBloc(
         speciesRepository: context.read<SpeciesRepository>(),
@@ -36,5 +44,10 @@ class SpeciesDetailsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool isUserAuthenticated(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    return authService.isLoggedIn;
   }
 }
