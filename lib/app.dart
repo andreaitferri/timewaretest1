@@ -43,45 +43,30 @@ class App extends StatelessWidget {
                 ),
               ),
             ],
-            // Bloc
-            child: MultiBlocProvider(
-              providers: [
-                BlocProvider<SpeciesBloc>(
-                  create: (context) => SpeciesBloc(
-                    speciesRepository: context.read<SpeciesRepository>(),
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Timeware Species App',
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+                scaffoldBackgroundColor: Colors.grey.shade300,
+                appBarTheme: const AppBarTheme(
+                  titleTextStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
+                  backgroundColor: Colors.blue,
+                  elevation: 4,
                 ),
-                BlocProvider<DetailedSpeciesBloc>(
-                  create: (context) => DetailedSpeciesBloc(
-                    speciesRepository: context.read<SpeciesRepository>(),
-                  ),
-                ),
-              ],
-              child: MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Timeware Species App',
-                theme: ThemeData(
-                  primarySwatch: Colors.blue,
-                  scaffoldBackgroundColor: Colors.grey.shade300,
-                  appBarTheme: const AppBarTheme(
-                    titleTextStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    backgroundColor: Colors.blue,
-                    elevation: 4,
-                  ),
-                ),
-                home: const SpeciesListPage(),
-                routes: {
-                  '/specieslist': (context) => const SpeciesListPage(),
-                  '/speciesdetails': (context) => SpeciesDetailsPage(
-                        species: ModalRoute.of(context)!.settings.arguments
-                            as Species,
-                      ),
-                },
               ),
+              home: const SpeciesListPage(),
+              routes: {
+                '/specieslist': (context) => const SpeciesListPage(),
+                '/speciesdetails': (context) => SpeciesDetailsPage(
+                      species:
+                          ModalRoute.of(context)!.settings.arguments as Species,
+                    ),
+              },
             ),
           ),
         ),
