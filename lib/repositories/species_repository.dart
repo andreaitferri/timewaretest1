@@ -29,24 +29,16 @@ class SpeciesRepository {
   }
 
   Future<DetailedSpecies> fetchSpeciesDetails(int taxonId) async {
-    print("[DEBUG] fetchSpeciesDetails - Enter");
-
     try {
       final detailedSpeciesDTO =
           await speciesService.fetchSpeciesDetails(taxonId);
 
-      print("[DEBUG] Kingdom: ${detailedSpeciesDTO.kingdom}");
-      print("[DEBUG] Phylum: ${detailedSpeciesDTO.phylum}");
-
       final detailedSpecies = detailedSpeciesMapper.toModel(detailedSpeciesDTO);
-      print(
-          "[DEBUG] fetchSpeciesDetails - DetailedSpecies created: ${detailedSpecies.toString()}");
 
       return detailedSpecies;
     } on NetworkError catch (e) {
       throw RepositoryError(e.reasonPhrase);
     } catch (e) {
-      print("Error occurred: $e");
       throw RepositoryError('An unexpected error occurred');
     }
   }

@@ -40,9 +40,11 @@ class SpeciesWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 2,
+          flex: 1,
           child: Image.network(
             species.photo,
+            height: 100,
+            width: 100,
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
               print("Failed to load image: $error");

@@ -11,10 +11,12 @@ class DetailedSpeciesWidget extends StatelessWidget {
   Widget build(BuildContext context) => Card(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              DetailedSpeciesInfoWidget(detailedSpecies),
-            ],
+          child: Center(
+            child: Column(
+              children: [
+                DetailedSpeciesInfoWidget(detailedSpecies),
+              ],
+            ),
           ),
         ),
       );
@@ -28,39 +30,46 @@ class DetailedSpeciesInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    TextStyle textStyle = _getTextStyleForWidth(width);
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        TextStyle textStyle = _getTextStyleForWidth(constraints.maxWidth);
 
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            detailedSpecies.photo,
-            width: width * 0.95,
-            fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => const Icon(Icons.error),
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(
+                detailedSpecies.photo,
+                width: constraints.maxWidth * 0.35,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => const Icon(Icons.error),
+              ),
+              SizedBox(height: 5),
+              Text(
+                'Main Common Name: ${detailedSpecies.mainCommonName}',
+                style: textStyle,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Kingdom: ${detailedSpecies.kingdom}',
+                style: textStyle,
+              ),
+              Text(
+                'Class: ${detailedSpecies.animalClass}',
+                style: textStyle,
+              ),
+              Text(
+                'Order: ${detailedSpecies.order}',
+                style: textStyle,
+              ),
+              Text(
+                'Family: ${detailedSpecies.family}',
+                style: textStyle,
+              ),
+            ],
           ),
-          Text(
-            'Kingdom: ${detailedSpecies.kingdom}',
-            style: textStyle,
-          ),
-          Text(
-            'Class: ${detailedSpecies.animalClass}',
-            style: textStyle,
-          ),
-          Text(
-            'Main Common Name: ${detailedSpecies.mainCommonName}',
-            style: textStyle,
-          ),
-          Image.network(
-            detailedSpecies.photo,
-            width: width * 0.95,
-            fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => const Icon(Icons.error),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
