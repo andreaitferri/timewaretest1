@@ -9,16 +9,16 @@ class LoginPage extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(title: Text("Login")),
+      appBar: AppBar(title: const Text("Login")),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text("Effettua il login"),
+          const Text("Effettua il login"),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: passwordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
             onPressed: () {
               authService.login(passwordController.text, context);
             },
-            child: Text('Login'),
+            child: const Text('Login'),
           ),
         ],
       ),

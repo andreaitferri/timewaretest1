@@ -26,7 +26,7 @@ class SpeciesListPage extends StatelessWidget {
           title: const Text('Species List'),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.exit_to_app),
+              icon: const Icon(Icons.exit_to_app),
               onPressed: () => _logout(context),
             ),
           ],

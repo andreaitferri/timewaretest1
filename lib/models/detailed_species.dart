@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:timewaretest1/models/species.dart';
 
 class DetailedSpecies extends Species {

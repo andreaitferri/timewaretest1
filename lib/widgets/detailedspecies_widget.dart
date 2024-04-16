@@ -44,7 +44,11 @@ class DetailedSpeciesInfoWidget extends StatelessWidget {
                 fit: BoxFit.cover,
                 errorBuilder: (_, __, ___) => const Icon(Icons.error),
               ),
-              SizedBox(height: 5),
+              Text(
+                'Scientic Name: ${detailedSpecies.scientificName}',
+                style: textStyle,
+                textAlign: TextAlign.center,
+              ),
               Text(
                 'Main Common Name: ${detailedSpecies.mainCommonName}',
                 style: textStyle,

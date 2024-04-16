@@ -15,13 +15,11 @@ class CourtesyWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.headline4,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: Text(
               subtitle,
-              style: Theme.of(context).textTheme.headline6,
             ),
           ),
         ],

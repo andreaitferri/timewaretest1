@@ -26,7 +26,7 @@ class SpeciesDetailsPage extends StatelessWidget {
       )..add(FetchDetailedSpeciesEvent(species.taxonid)),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Species Details'),
+          title: const Text('Species Details'),
         ),
         body: BlocBuilder<DetailedSpeciesBloc, DetailedSpeciesState>(
           builder: (context, state) {

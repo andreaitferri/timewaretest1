@@ -24,7 +24,7 @@ class AuthService with ChangeNotifier {
       Navigator.of(context).pushReplacementNamed('/specieslist');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Password incorretta, riprova!'),
           duration: Duration(seconds: 2),
         ),

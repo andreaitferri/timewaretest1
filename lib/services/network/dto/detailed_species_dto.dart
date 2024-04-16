@@ -101,12 +101,6 @@ class DetailedSpeciesDTO extends SpeciesDTO {
     ]);
 
   factory DetailedSpeciesDTO.fromJson(Map<String, dynamic> data) {
-    print(" enter here ");
-
-    // Stampa dei valori per debug
-    print(
-        "Deserializing: taxonid=${data['taxonid']}, scientific_name=${data['scientific_name']}, kingdom=${data['kingdom']}, phylum=${data['phylum']}, class=${data['class']}, order=${data['order']}, family=${data['family']}, genus=${data['genus']}, main_common_name=${data['main_common_name']}, authority=${data['authority']}, published_year=${data['published_year']}, category=${data['category']}, criteria=${data['criteria']}, marine_system=${data['marine_system']}, freshwater_system=${data['freshwater_system']}, terrestrial_system=${data['terrestrial_system']}, aoo_km2=${data['aoo_km2']}, eoo_km2=${data['eoo_km2']}, elevation_upper=${data['elevation_upper']}, elevation_lower=${data['elevation_lower']}, depth_upper=${data['depth_upper']}, depth_lower=${data['depth_lower']}, assessor=${data['assessor']}, reviewer=${data['reviewer']}, errata_flag=${data['errata_flag']}, errata_reason=${data['errata_reason']}, amended_flag=${data['amended_flag']}, amended_reason=${data['amended_reason']}, photo=${data['photo']}");
-
     return DetailedSpeciesDTO(
       taxonid: data['taxonid'] ?? 0,
       scientificName: data['scientific_name'] ?? 'Unknown',

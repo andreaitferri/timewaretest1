@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:timewaretest1/models/species.dart';
-import 'package:timewaretest1/pages/species_details_page.dart';
 
 class SpeciesWidget extends StatelessWidget {
   final Species species;
@@ -47,7 +46,6 @@ class SpeciesWidget extends StatelessWidget {
             width: 100,
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
-              print("Failed to load image: $error");
               return const Icon(Icons.error);
             },
           ),
@@ -57,7 +55,7 @@ class SpeciesWidget extends StatelessWidget {
           flex: 4,
           child: _buildDetailsColumn(
             context,
-            TextStyle(fontSize: 20),
+            const TextStyle(fontSize: 20),
           ),
         ),
       ],
@@ -78,10 +76,10 @@ class SpeciesWidget extends StatelessWidget {
             return const Icon(Icons.error);
           },
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _buildDetailsColumn(
           context,
-          TextStyle(fontSize: 14),
+          const TextStyle(fontSize: 14),
         ),
       ],
     );
