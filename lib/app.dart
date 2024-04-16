@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:timewaretest1/blocs/species/species_bloc.dart';
 import 'package:timewaretest1/blocs/detailedspecies/detailedspecies_bloc.dart';
+import 'package:timewaretest1/models/species.dart';
+import 'package:timewaretest1/pages/species_details_page.dart';
 import 'package:timewaretest1/pages/species_list_page.dart';
 import 'package:timewaretest1/repositories/mappers/detailedspecies_mapper.dart';
 import 'package:timewaretest1/repositories/species_repository.dart';
@@ -72,6 +74,13 @@ class App extends StatelessWidget {
                   ),
                 ),
                 home: const SpeciesListPage(),
+                routes: {
+                  '/specieslist': (context) => const SpeciesListPage(),
+                  '/speciesdetails': (context) => SpeciesDetailsPage(
+                        species: ModalRoute.of(context)!.settings.arguments
+                            as Species,
+                      ),
+                },
               ),
             ),
           ),

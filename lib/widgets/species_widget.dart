@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:timewaretest1/models/species.dart';
-import 'package:timewaretest1/pages/species_details_page.dart';
 
 class SpeciesWidget extends StatelessWidget {
   final Species species;
@@ -28,11 +27,8 @@ class SpeciesDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => SpeciesDetailsPage(species: species),
-            ),
-          );
+          Navigator.of(context)
+              .pushNamed('/speciesdetails', arguments: species);
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
