@@ -141,7 +141,7 @@ packages:
     version: "2.1.1"
   matcher:
     dependency: transitive
-    description:
+    description:git 
       name: matcher
       sha256: "6501fbd55da300384b768785b83e5ce66991266cec21af89ab9ae7f5ce1c4cbb"
       url: "https://pub.dev"
