@@ -27,31 +27,50 @@ class DetailedSpeciesInfoWidget extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Kingdom: ${detailedSpecies.kingdom}',
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            Text(
-              'Class: ${detailedSpecies.animalClass}',
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            // Add more detailed fields as necessary
-            Text(
-              'Main Common Name: ${detailedSpecies.mainCommonName}',
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            Image.network(
-              detailedSpecies.photo,
-              width:
-                  MediaQuery.of(context).size.width * 0.95, // responsive width
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const Icon(Icons.error),
-            ),
-          ],
-        ),
-      );
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    TextStyle textStyle = _getTextStyleForWidth(width);
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.network(
+            detailedSpecies.photo,
+            width: width * 0.95,
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => const Icon(Icons.error),
+          ),
+          Text(
+            'Kingdom: ${detailedSpecies.kingdom}',
+            style: textStyle,
+          ),
+          Text(
+            'Class: ${detailedSpecies.animalClass}',
+            style: textStyle,
+          ),
+          Text(
+            'Main Common Name: ${detailedSpecies.mainCommonName}',
+            style: textStyle,
+          ),
+          Image.network(
+            detailedSpecies.photo,
+            width: width * 0.95,
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => const Icon(Icons.error),
+          ),
+        ],
+      ),
+    );
+  }
+
+  TextStyle _getTextStyleForWidth(double width) {
+    if (width > 800) {
+      return TextStyle(fontSize: 24);
+    } else if (width > 600) {
+      return TextStyle(fontSize: 20);
+    } else {
+      return TextStyle(fontSize: 16);
+    }
+  }
 }

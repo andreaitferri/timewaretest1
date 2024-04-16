@@ -30,14 +30,19 @@ class SpeciesService {
   }
 
   Future<DetailedSpeciesDTO> fetchSpeciesDetails(int details) async {
-    final uri = Uri.https(_baseUrl, _apiPath, {'details': details.toString()});
+    print("[DEBUG] fetchSpeciesDetails - Enter ");
 
+    final uri = Uri.https(_baseUrl, _apiPath, {'details': details.toString()});
     final response = await http.get(
       uri,
       headers: <String, String>{
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
       },
     );
+
+    print(
+        "[DEBUG] fetchSpeciesDetails - HTTP Status Code: ${response.statusCode}");
+    print("[DEBUG] fetchSpeciesDetails - Response body: ${response.body}");
 
     if (response.statusCode != 200) {
       throw NetworkError(
@@ -46,7 +51,12 @@ class SpeciesService {
       );
     }
 
+    print("[DEBUG] fetchSpeciesDetails - Post Check == 200");
+
     final decodedResponse = jsonDecode(response.body) as Map<String, dynamic>;
-    return DetailedSpeciesDTO.fromJson(decodedResponse);
+    print("Decoded response: $decodedResponse");
+    final dto = DetailedSpeciesDTO.fromJson(decodedResponse);
+
+    return dto;
   }
 }
